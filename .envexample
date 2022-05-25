@@ -1,4 +1,4 @@
-PORT = 3000
-USERNAME = garegin
-DATABASE = bicycles
-PASSWORD = 123
+PORT=3000
+USERNAME=garegin
+DATABASE=bicycles
+PASSWORD=123
