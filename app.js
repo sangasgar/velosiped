@@ -7,10 +7,15 @@ const path = require('path');
 const async = require('hbs/lib/async');
 const bcrypt = require('bcrypt');
 const db = require('./db/models');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const checkSession = require('./middleWare/middleWare');
 
 const PORT = process.env.PORT ?? 3000;
 
 const app = express();
+app.use(express.json());
+// app.use(checkSession);
 const indexRouter = require('./routers/indexRouter');
 const postsRouter = require('./routers/postsRouter');
 const usersRouter = require('./routers/usersRouter');
@@ -21,6 +26,13 @@ app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  name: 'IDs',
+  store: new FileStore({}),
+  secret: process.env.SESSION,
+  resave: true,
+  saveUninitialized: false,
+}));
 
 async function testBd() {
   try {
