@@ -15,11 +15,12 @@ const PORT = process.env.PORT ?? 3000;
 
 const app = express();
 app.use(express.json());
-// app.use(checkSession);
+
 const indexRouter = require('./routers/indexRouter');
 const postsRouter = require('./routers/postsRouter');
 const usersRouter = require('./routers/usersRouter');
 
+hbs.registerPartials(path.join(process.env.PWD, '/views/partials'));
 app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(process.env.PWD, 'public')));
@@ -33,7 +34,7 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
 }));
-
+app.use(checkSession);
 async function testBd() {
   try {
     await db.sequelize.authenticate();
@@ -47,9 +48,9 @@ testBd();
 
 app.use('/', indexRouter);
 
-app.use('post/', postsRouter);
+app.use('/posts', postsRouter);
 
-app.use('user/', usersRouter);
+app.use('/user', usersRouter);
 app.listen(PORT, () => {
   console.log('server start on ', PORT, '...');
 });

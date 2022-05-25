@@ -1,0 +1,12 @@
+{{#if user.name}}
+ Привет {{ user.name }}
+<a href="/posts/add">Добавить маршрут</a>
+<a href="/user/logout">Выход</a>
+
+{{ else }}
+
+<a href="/">Главная</a>
+<a href="/user">Вход</a>
+<a href="/user/register">Регистрация</a>
+
+{{/if}}
