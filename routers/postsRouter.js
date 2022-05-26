@@ -28,6 +28,8 @@ router.post('/add', async (req, res) => {
   }
   return res.render('addpost', { error: 'Пожалуйста заполните все поля' });
 });
+
+
 router.get('/', async (req, res) => {
   const posts = await Posts.findAll({
     include: {
@@ -36,6 +38,7 @@ router.get('/', async (req, res) => {
   });
 
   const allPosts = JSON.parse(JSON.stringify(posts));
+
   const mapping = allPosts.map((el) => {
     if (el.Rates) {
       el.rating = 0;
@@ -47,10 +50,9 @@ router.get('/', async (req, res) => {
       el.midleRating = Math.floor(el.rating / el.leng);
     }
   });
-  res.render('posts', {
-    allPosts,
-  });
+  res.render('posts', { allPosts });
 });
+
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
@@ -76,10 +78,16 @@ router.get('/:id', async (req, res) => {
   result = Math.floor(result / rating.length);
   JSON.parse(JSON.stringify(result));
   const { name } = JSON.parse(JSON.stringify(user.User));
+
+  console.log(name, '======================<<<<');
+
   res.render('deatailpost', {
     name, post, comment, result,
   });
 });
+
+
+
 router.post('/addcomment', async (req, res) => {
   console.log(req.body);
   const { comment, user_id, post_id } = req.body;
@@ -94,7 +102,7 @@ router.post('/addcomment', async (req, res) => {
   } catch (err) {
     return res.render('deatailpost', { error: 'Пожалуйста введите коммеентарий' });
   }
-  res.sendStatus(200);
 });
+
 
 module.exports = router;
