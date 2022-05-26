@@ -82,6 +82,18 @@ router.get('/:id', async (req, res) => {
 });
 router.post('/addcomment', async (req, res) => {
   console.log(req.body);
+  const { comment, user_id, post_id } = req.body;
+  try {
+    if (comment && user_id && post_id) {
+      await Comments.create({
+        comment, user_id, post_id,
+      });
+      return res.redirect(`/posts/${post_id}`);
+    }
+    return res.render('deatailpost', { error: 'Пожалуйста введите коммеентарий' });
+  } catch (err) {
+    return res.render('deatailpost', { error: 'Пожалуйста введите коммеентарий' });
+  }
   res.sendStatus(200);
 });
 
