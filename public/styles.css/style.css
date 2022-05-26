@@ -1,0 +1,22 @@
+body {
+  height: 100vh;
+  background-color: RGB(241, 241, 241);
+}
+.map {
+  width: 600px;
+  height: 600px;
+}
+header {
+    height: fit-content;
+    background-color: #0c73fe;
+    color: #ffff;
+  }
+
+  
+  .createdRoutes {
+    margin-top: 30px;
+  }
+  .mapForRouteInfo {
+    width: 500px;
+    height: 350px;
+  }
