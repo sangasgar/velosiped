@@ -80,5 +80,9 @@ router.get('/:id', async (req, res) => {
     name, post, comment, result,
   });
 });
+router.post('/addcomment', async (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
+});
 
 module.exports = router;
