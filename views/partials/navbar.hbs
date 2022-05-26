@@ -12,12 +12,12 @@
         <ul>
           <li><a href="/">Главная</a></li>
           {{#if user.name}}
-          <li><a href="/posts">Все маршруты</a></li>
           <li><a href="/posts/add">Добавить свой маршрут</a></li>
           <li><a href="/user/logout">Выход</a></li>
           <li><a href="/posts/{{user.ids}}">Мои маршруты</a></li>
           <li><a href="#">Вы,<b>{{ user.name }}</b></a></li>
           {{ else }}
+          <li><a href="/posts">Все маршруты</a></li>
           <li><a href="/user">Вход</a></li>
           <li><a href="/user/register">Регистрация</a></li>
           {{/if}}
