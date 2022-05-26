@@ -7,25 +7,20 @@
 {{this.location}}
 {{this.lengthRoad}}
 {{/each}}
-{{#each comment}}
 <h1> Комментарии </h1>
+{{#each comment}}
 {{this.comment}}<br>
 {{/each}}
 <h1>Средний Рейтинг</h1>
 {{result}}
 <h1>Автор маршрута</h1>
 {{name}}
-
-
-{{!-- <h1>Комментарий</h1>
-<form action="/posts/add" method="POST">
-  <input type="text" name="title" value="" placeholder="Название маршрута"><br>
-  <input type="text" name="start" value="" placeholder="Начало маршрута"><br>
-  <input type="text" name="finish" value="" placeholder="Конец маршрута"><br>
-  <input type="text" name="location" value="" placeholder="Населенный пункт"><br>
-  <input type="text" name="lengthRoad" value="" placeholder="Растояние"><br>
-  <input type="hidden" name="user_id"  value="{{user.ids}}" placeholder="Растояние"><br>
-
+<h1>{{error}} </h1>
+{{#if user.name}}
+<form action="/posts/addcomment" method="POST">
+  <input type="text" name="comment" value="" placeholder="Название комментария"><br>
+  <input type="hidden" name="user_id" value="{{user.ids}}">
   <button type="submit">Ok</button>
-
-</form> --}}
+  <input type="hidden" name="post_id" value="{{#each post}}{{this.id}}{{/each}}">
+</form>
+{{/if}}
