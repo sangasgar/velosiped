@@ -27,6 +27,21 @@
             <p>Автор маршрута: {{../name}}</p>
             <p>Рейтинг: {{../result}}</p>
             {{/each}}</p>
+            <div class="voice">
+                <input type="hidden" class="post_id" name="post_id" value="{{#each post}}{{this.id}}{{/each}}">
+              {{#if user.name}}
+              <label for="grade">Оцените маршрут</label>
+              <select id="grade" name="grade">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              {{/if}}
+              
+              </div>
           </div>
         </div>
 
@@ -58,22 +73,6 @@
                     <h2 class="display-4">Добавить комментарий</h2>
                   </div>
                 </div>
-              </div>
-
-              <div class="voice">
-                <input type="hidden" class="post_id" name="post_id" value="{{#each post}}{{this.id}}{{/each}}">
-              {{#if user.name}}
-              <label for="grade">Оцените маршрут</label>
-              <select id="grade" name="grade">
-                <option value="0" selected="selected">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              {{/if}}
-              
               </div>
               <h1>{{error}} </h1>
               {{#if user.name}}
