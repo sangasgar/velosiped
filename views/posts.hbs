@@ -1,37 +1,44 @@
 <main id="main">
   {{#each allPosts}}
-
-
   <section>
     <div class="container" data-aos="fade-up">
-
-
       <div class="d-md-flex post-entry-2 half mt-5">
         <a href="#" class="me-4 thumbnail order-2">
-          <img src="img/велосипедист.jpg" alt="" class="img-fluid">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=37.719715%2C55.858799&mode=routes&rtext={{this.start}}~{{this.finish}}&rtt=bc&ruri=~&z=13.17"
+            width="560" height="400" frameborder="1" allowfullscreen="true"></iframe>
         </a>
         <div class="pe-md-5 mt-4 mt-md-0">
           <div class="post-meta mt-4"></div>
           <h2 class="mb-4 display-4">{{this.title}}</h2>
           <ul>
-            <li><p><b>Название маршрута</b>: {{this.title}}</p></li>
-            <li><p><b>Откуда</b>:      {{this.start}}</p></li>
-            <li><p><b>Куда</b>:      {{this.finish}}</p></li>
-            <li><p><b>Населённый пункт</b>:      {{this.location}}</p></li>
-            <li><p><b>Длина маршрута</b>:      {{this.lengthRoad}}</p></li>
-            <li><p><b>Ваш рейтинг</b>:      {{this.midleRating}}</p></li>
-             <form action="/posts" method="POST">
-            <button type="submit">Delete</button>
-             </form>
+            <li>
+              <p><b>Название маршрута</b>: {{this.title}}</p>
+            </li>
+            <li>
+              <p><b>Откуда</b>: {{this.start}}</p>
+            </li>
+            <li>
+              <p><b>Куда</b>: {{this.finish}}</p>
+            </li>
+            <li>
+              <p><b>Населённый пункт</b>: {{this.location}}</p>
+            </li>
+            <li>
+              <p><b>Длина маршрута</b>: {{this.lengthRoad}}</p>
+            </li>
+            <li>
+              <p><b>Ваш рейтинг</b>: {{this.midleRating}}</p>
+            </li>
+            <form action="/posts" method="POST">
+              <button type="submit">Delete</button>
+            </form>
           </ul>
-         
+
         </div>
       </div>
-
     </div>
-
     </div>
   </section>
-
   {{/each}}
 </main><!-- End #main -->
