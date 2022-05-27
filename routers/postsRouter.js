@@ -16,6 +16,7 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', async (req, res) => {
+  console.log(req.body);
   const {
     title, start, finish, location, lengthRoad, user_id,
   } = req.body;

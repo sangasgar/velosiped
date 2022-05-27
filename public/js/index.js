@@ -22,11 +22,11 @@ function init() {
     // Выключим возможность задавать пункт отправления в поле ввода.
     fromEnabled: true,
     // Адрес или координаты пункта отправления.
-    // from:"г. Москва ул. Орджоникидзе 25" ,
+    // from: ,
     // Включим возможность задавать пункт назначения в поле ввода.
     toEnabled: true,
     // Адрес или координаты пункта назначения.
-    // to: 'г. Москва ул. Орджоникидзе 18'
+    // to: 'Петербург'
   });
 
   // Зададим опции панели для построения машрутов.
@@ -60,7 +60,7 @@ function init() {
         console.log(`Длина: ${activeRoute.properties.get('distance').text}`);
         inputLength.value = `${activeRoute.properties.get('distance').text}`;
         // console.log(activeRoute);
-        // console.log(multiRoute);
+        console.log(multiRoute);
         inputStart.value = multiRoute.properties._data.waypoints[0].address;
         inputEnd.value = multiRoute.properties._data.waypoints[1].address;
       }
