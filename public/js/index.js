@@ -1,6 +1,6 @@
-const inputStart = document.getElementsByName('start');
-const inputEnd = document.getElementsByName('finish');
-const inputLength = document.getElementsByName('lengthRoad');
+const inputStart = document.getElementsByName('start')[0];
+const inputEnd = document.getElementsByName('finish')[0];
+const inputLength = document.getElementsByName('lengthRoad')[0];
 
 ymaps.ready(init);
 
