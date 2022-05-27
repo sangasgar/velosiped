@@ -1,6 +1,6 @@
-const inputStart = document.getElementsByName('start');
-const inputEnd = document.getElementsByName('finish');
-const inputLength = document.getElementsByName('lengthRoad');
+const inputStart = document.getElementsByName('start')[0];
+const inputEnd = document.getElementsByName('finish')[0];
+const inputLength = document.getElementsByName('lengthRoad')[0];
 
 ymaps.ready(init);
 
@@ -22,11 +22,11 @@ function init() {
     // Выключим возможность задавать пункт отправления в поле ввода.
     fromEnabled: true,
     // Адрес или координаты пункта отправления.
-    // from: ,
+    // from:"г. Москва ул. Орджоникидзе 25" ,
     // Включим возможность задавать пункт назначения в поле ввода.
     toEnabled: true,
     // Адрес или координаты пункта назначения.
-    // to: 'Петербург'
+    // to: 'г. Москва ул. Орджоникидзе 18'
   });
 
   // Зададим опции панели для построения машрутов.
