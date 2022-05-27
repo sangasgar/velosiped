@@ -14,7 +14,7 @@
           <li><a href="/posts">Все маршруты</a></li>
           {{#if user.name}}
           <li><a href="/posts/add">Добавить свой маршрут</a></li>
-          <li><a href="/posts/{{user.ids}}">Мои маршруты</a></li>
+          <li><a href="/posts/user/{{user.ids}}">Мои маршруты</a></li>
           <li><a href="#">Вы,<b>{{ user.name }}</b></a></li>
           <li><a href="/user/logout">Выход</a></li>
           {{ else }}

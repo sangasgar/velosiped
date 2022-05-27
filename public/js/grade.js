@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 const formGrade = document.querySelector('#grade');
 const voice = document.querySelector('.voice');
-const postId = document.getElementById('.post_id');
+const postId = document.querySelector('.post_id');
 
-async function mainGrade(value) {
+async function mainGrade(value, post_id) {
   try {
     response = await fetch('/posts', {
       method: 'POST', // или 'PUT'
-      body: JSON.stringify({ value }), // данные могут быть 'строкой' или {объектом}!
+      body: JSON.stringify({ value, post_id }), // данные могут быть 'строкой' или {объектом}!
       headers: {
         'Content-Type': 'application/json',
       },
@@ -23,12 +23,11 @@ async function mainGrade(value) {
 
 formGrade.addEventListener('click', (event) => {
   event.preventDefault();
-  // console.log(postId.value);
   console.log(event.target.value);
   const valVoice = event.target.value;
-  console.log('-----------------', postId.value);
+  console.log('----', postId.value);
   if (valVoice > 0) {
     console.log('-----------------', valVoice);
-    mainGrade(valVoice);
+    mainGrade(valVoice, postId.value);
   }
 });
