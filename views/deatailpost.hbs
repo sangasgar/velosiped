@@ -16,6 +16,7 @@
 <h1>Автор маршрута</h1>
 {{name}}
 <div class="voice">
+    <input type="hidden" class="post_id" name="post_id" value="{{#each post}}{{this.id}}{{/each}}">
   {{#if user.name}}
   <label for="grade"> Оцените маршрут</label>
   <select id="grade" name="grade">
