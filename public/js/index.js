@@ -60,7 +60,7 @@ function init() {
         console.log(`Длина: ${activeRoute.properties.get('distance').text}`);
         inputLength.value = `${activeRoute.properties.get('distance').text}`;
         // console.log(activeRoute);
-        console.log(multiRoute);
+        // console.log(multiRoute);
         inputStart.value = multiRoute.properties._data.waypoints[0].address;
         inputEnd.value = multiRoute.properties._data.waypoints[1].address;
       }
