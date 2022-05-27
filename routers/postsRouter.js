@@ -146,7 +146,7 @@ router.get('/user/:id', async (req, res) => {
   JSON.parse(JSON.stringify(comment));
   result = Math.floor(result / rating.length);
   JSON.parse(JSON.stringify(result));
-  const { name } = JSON.parse(JSON.stringify(user.User));
+  const { name } = JSON.parse(JSON.stringify(user));
 
   res.render('deatailpost', {
     name, post, comment, result,
