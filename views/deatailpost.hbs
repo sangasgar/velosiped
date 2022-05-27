@@ -15,6 +15,20 @@
 {{result}}
 <h1>Автор маршрута</h1>
 {{name}}
+<div class="voice">
+  {{#if user.name}}
+  <label for="grade"> Оцените маршрут</label>
+  <select id="grade" name="grade">
+    <option value="0" selected="selected">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  {{/if}}
+
+</div>
 <h1>{{error}} </h1>
 {{#if user.name}}
 <form action="/posts/addcomment" method="POST">
@@ -24,3 +38,4 @@
   <input type="hidden" name="post_id" value="{{#each post}}{{this.id}}{{/each}}">
 </form>
 {{/if}}
+<script defer src="/js/grade.js"></script>
