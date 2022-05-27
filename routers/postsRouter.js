@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 const router = require('express').Router();
+
 const {
   Users,
   Posts,
   Rate,
   Comments,
+  Sequelize,
 } = require('../db/models/index');
 const rate = require('../db/models/rate');
 
@@ -35,9 +37,16 @@ router.get('/', async (req, res) => {
   const posts = await Posts.findAll({
     include: {
       model: Rate,
+      order: [
+        ['grade', 'DESC'],
+      ],
+      // attributes: [
+      //   'post_id',
+      //   [[Sequelize.fn('sum', Sequelize.col('grade')), 'grade_middle']],
+      // ],
     },
   });
-
+  // console.log(posts);
   const allPosts = JSON.parse(JSON.stringify(posts));
 
   const mapping = allPosts.map((el) => {
@@ -101,8 +110,47 @@ router.post('/addcomment', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
-  res.sendStatus(200);
+  try {
+    const { value, post_id } = req.body;
+    if (value && post_id) {
+      await Rate.create({
+        grade: value, post_id,
+      });
+      return res.sendStatus(200);
+    }
+  } catch (err) {
+    return res.redirect(`/posts/${post_id}`);
+  }
+});
+
+router.get('/user/:id', async (req, res) => {
+  const { id } = req.params;
+  const post = await Posts.findAll({
+    where: { id },
+  });
+  const user = await Posts.findOne({
+    where: { id },
+    include: { model: Users },
+  });
+  const comment = await Comments.findAll({
+    where: { post_id: id },
+  });
+  const rating = await Rate.findAll({
+    where: { post_id: id },
+  });
+  let result = 0;
+  const middleRating = rating.map((el) => {
+    result += el.grade;
+  });
+  JSON.parse(JSON.stringify(post));
+  JSON.parse(JSON.stringify(comment));
+  result = Math.floor(result / rating.length);
+  JSON.parse(JSON.stringify(result));
+  const { name } = JSON.parse(JSON.stringify(user.User));
+
+  res.render('deatailpost', {
+    name, post, comment, result,
+  });
 });
 
 module.exports = router;
