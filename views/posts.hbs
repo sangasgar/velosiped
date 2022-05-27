@@ -12,9 +12,15 @@
           <div class="post-meta mt-4"></div>
           <h2 class="mb-4 display-4">{{this.title}}</h2>
           <ul>
+<<<<<<< HEAD
+            
+              <input type="hidden" class="post_id" name="post_id" value="{{this.id}}" >
+          
+=======
             <li>
               <p><b>Название маршрута</b>: {{this.title}}</p>
             </li>
+>>>>>>> 9b5dba3cc72c8c8370ca248600f2cfb2edb28701
             <li>
               <p><b>Откуда</b>: {{this.start}}</p>
             </li>
@@ -28,11 +34,9 @@
               <p><b>Длина маршрута</b>: {{this.lengthRoad}}</p>
             </li>
             <li>
-              <p><b>Ваш рейтинг</b>: {{this.midleRating}}</p>
+              <p><b>Средний рейтинг</b>: {{this.midleRating}}</p>
             </li>
-            <form action="/posts" method="POST">
-              <button type="submit">Delete</button>
-            </form>
+          <a href="/posts/{{this.id}}">Подробнее</a>
           </ul>
 
         </div>
@@ -42,3 +46,4 @@
   </section>
   {{/each}}
 </main><!-- End #main -->
+
