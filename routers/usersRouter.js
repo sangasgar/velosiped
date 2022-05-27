@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
       }
       // eslint-disable-next-line max-len
       const userReg = await Users.create({ name, email, password: await bcrypt.hash(password, Number(process.env.SALTROUNDS)) });
-      req.session.id = userReg.id;
+      req.session.ids = userReg.id;
       req.session.name = userReg.name;
       req.session.email = userReg.email;
       return res.redirect('/');

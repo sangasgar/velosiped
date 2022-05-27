@@ -46,9 +46,7 @@ router.get('/', async (req, res) => {
       // ],
     },
   });
-  // console.log(posts);
   const allPosts = JSON.parse(JSON.stringify(posts));
-
   const mapping = allPosts.map((el) => {
     if (el.Rates) {
       el.rating = 0;
@@ -125,31 +123,12 @@ router.post('/', async (req, res) => {
 
 router.get('/user/:id', async (req, res) => {
   const { id } = req.params;
-  const post = await Posts.findAll({
-    where: { id },
+  const allPosts = await Posts.findAll({
+    where: { user_id: id },
   });
-  const user = await Posts.findOne({
-    where: { id },
-    include: { model: Users },
-  });
-  const comment = await Comments.findAll({
-    where: { post_id: id },
-  });
-  const rating = await Rate.findAll({
-    where: { post_id: id },
-  });
-  let result = 0;
-  const middleRating = rating.map((el) => {
-    result += el.grade;
-  });
-  JSON.parse(JSON.stringify(post));
-  JSON.parse(JSON.stringify(comment));
-  result = Math.floor(result / rating.length);
-  JSON.parse(JSON.stringify(result));
-  const { name } = JSON.parse(JSON.stringify(user));
 
-  res.render('deatailpost', {
-    name, post, comment, result,
+  res.render('posts', {
+    allPosts,
   });
 });
 
