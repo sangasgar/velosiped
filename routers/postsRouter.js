@@ -12,7 +12,9 @@ const rate = require('../db/models/rate');
 router.get('/add', (req, res) => {
   res.render('addpost');
 });
+
 router.post('/add', async (req, res) => {
+  console.log(req.body);
   const {
     title, start, finish, location, lengthRoad, user_id,
   } = req.body;
@@ -28,7 +30,6 @@ router.post('/add', async (req, res) => {
   }
   return res.render('addpost', { error: 'Пожалуйста заполните все поля' });
 });
-
 
 router.get('/', async (req, res) => {
   const posts = await Posts.findAll({
@@ -52,7 +53,6 @@ router.get('/', async (req, res) => {
   });
   res.render('posts', { allPosts });
 });
-
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
@@ -79,14 +79,10 @@ router.get('/:id', async (req, res) => {
   JSON.parse(JSON.stringify(result));
   const { name } = JSON.parse(JSON.stringify(user.User));
 
-  console.log(name, '======================<<<<');
-
   res.render('deatailpost', {
     name, post, comment, result,
   });
 });
-
-
 
 router.post('/addcomment', async (req, res) => {
   console.log(req.body);
@@ -104,5 +100,9 @@ router.post('/addcomment', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
+});
 
 module.exports = router;
