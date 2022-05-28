@@ -37,27 +37,12 @@ router.get('/', async (req, res) => {
   const posts = await Posts.findAll({
     include: {
       model: Rate,
-      order: [
-        ['grade', 'DESC'],
-      ],
-      // attributes: [
-      //   'post_id',
-      //   [[Sequelize.fn('sum', Sequelize.col('grade')), 'grade_middle']],
-      // ],
+      attributes: [],
     },
+    attributes: ['id', 'title', 'start', 'finish', 'location', 'lengthRoad', [Sequelize.fn('AVG', Sequelize.col('Rates.grade')), 'midleRating']],
+    group: ['Posts.id'],
   });
   const allPosts = JSON.parse(JSON.stringify(posts));
-  const mapping = allPosts.map((el) => {
-    if (el.Rates) {
-      el.rating = 0;
-      el.leng = 0;
-      el.Rates.map((elem) => {
-        el.rating += elem.grade;
-        el.leng += 1;
-      });
-      el.midleRating = Math.floor(el.rating / el.leng);
-    }
-  });
   res.render('posts', { allPosts });
 });
 
@@ -125,8 +110,15 @@ router.get('/user/:id', async (req, res) => {
   const { id } = req.params;
   const allPosts = await Posts.findAll({
     where: { user_id: id },
+    include: {
+      model: Rate,
+      attributes: [],
+    },
+    attributes: ['title', 'start', 'finish', 'location', 'lengthRoad', [Sequelize.fn('AVG', Sequelize.col('Rates.grade')), 'midleRating']],
+    group: ['Posts.id'],
   });
 
+  console.log(JSON.parse(JSON.stringify(allPosts)));
   res.render('posts', {
     allPosts,
   });
